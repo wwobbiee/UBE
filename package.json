@@ -1,0 +1,28 @@
+{
+  "name": "ube-universal-beatmap-extractor",
+  "author": "Robbie Yamashita",
+  "description": "A Universal beatmap converter for mania rhythm games.",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "js/ube.js",
+  "scripts": {
+    "start": "live-server .",
+    "dev": "concurrently \"npm run watch:css\" \"live-server . --ignore=node_modules\"",
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/main.css --minify",
+    "watch:css": "tailwindcss -i ./css/input.css -o ./css/main.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "concurrently": "^9.2.4",
+    "live-server": "^1.2.2",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "jszip": "3.10.2",
+    "js-yaml": "5.5.0"
+  },
+  "keywords": [],
+  "license": "ISC"
+}

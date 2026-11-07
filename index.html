@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="author" content="Robbie Yamashita">
+  <meta name="description" content="Convert mania beatmaps locally between osu!, Quaver, StepMania and BMS.">
+  <meta name="theme-color" content="#13111A">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:site_name" content="UBE">
+  <meta property="og:title" content="UBE // Universal Beatmap Extractor">
+  <meta property="og:description" content="Convert mania beatmaps locally between osu!, Quaver, StepMania and BMS.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:url" content="https://wobbie.me/UBE/">
+  <meta property="og:image" content="https://wobbie.me/UBE/assets/images/main-og.png">
+  <meta property="og:image:alt" content="The calling card for UBE, a universal beatmap extractor to convert mania rhythm-game formats.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UBE // Universal Beatmap Extractor">
+  <meta name="twitter:description" content="Convert mania beatmaps locally between osu!, Quaver, StepMania and BMS.">
+  <meta name="twitter:image" content="https://wobbie.me/UBE/assets/images/main-og.png">
+  <meta name="twitter:image:alt" content="The calling card for UBE, a universal beatmap extractor to convert mania rhythm-game formats.">
+
+  <title>UBE // Universal Beatmap Extractor</title>
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="css/main.css">
+  <script type="module" src="js/main.mjs"></script>
+</head>
+<body>
+  <header>
+    <div class="header-wrapper">
+      <div>
+        <p class="head-title">UBE // Universal Beatmap Extractor</p>
+        <h1>Beatmap Extractor</h1>
+        <p class="head-subtitle">Convert beatmap formats</p>
+      </div>
+      <img src="assets/images/ube-sm.png" alt="UBE logo" width="128" height="128" loading="lazy">
+    </div>
+    <div class="supported-games">
+      <div class="games-track">
+        <div class="games-content">
+          <span>// osu!Game</span>
+          <span>// Quaver</span>
+          <span>// Beatmania IIDX</span>
+          <span>// Stepmania</span>
+        </div>
+        <div class="games-content" aria-hidden="true">
+          <span>// osu!Game</span>
+          <span>// Quaver</span>
+          <span>// Beatmania IIDX</span>
+          <span>// Stepmania</span>
+        </div>
+        <div class="games-content" aria-hidden="true">
+          <span>// osu!Game</span>
+          <span>// Quaver</span>
+          <span>// Beatmania IIDX</span>
+          <span>// Stepmania</span>
+        </div>
+        <div class="games-content" aria-hidden="true">
+          <span>// osu!Game</span>
+          <span>// Quaver</span>
+          <span>// Beatmania IIDX</span>
+          <span>// Stepmania</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="workspace-card">
+      <div class="workspace-tabs" role="tablist" aria-label="UBE workspace">
+        <button id="tab-convert"  type="button" role="tab" aria-controls="panel-convert" aria-selected="true">Convert</button>
+        <button id="tab-about"    type="button" role="tab" aria-controls="panel-about"   aria-selected="false" tabindex="-1">About</button>
+        <button id="tab-formats"  type="button" role="tab" aria-controls="panel-formats" aria-selected="false" tabindex="-1">Formats</button>
+      </div>
+
+      <div id="panel-convert" role="tabpanel" aria-labelledby="tab-convert" tabindex="0">
+
+        <section class="card-upload-section" id="workspace" aria-label="Beatmap converter">
+          <div class="section-heading">
+            <h2>01 // Drop your files</h2>
+            <span class="local-badge">Processed in browser</span>
+          </div>
+          <div class="drop-zone" id="drop-zone">
+            <p class="drop-title">DROP CHARTS, FOLDERS OR ARCHIVES</p>
+            <p>Include the music and images. We'll keep the folders together.</p>
+            <div class="upload-actions">
+              <button id="upload-btn"  type="button">Choose files</button>
+              <button id="folder-btn" type="button" class="quiet">Choose folder</button>
+            </div>
+            <p class="extension-hint">
+              .osu &middot; .qua &middot; .sm &middot; .dwi &middot; .bms / .bme / .bml / .pms &middot; .ube<br>.zip &middot; .osz &middot; .qp &middot; .olz (ZIP containers)
+            </p>
+            <input type="file" id="file-input" hidden multiple>
+            <input type="file" id="folder-input" hidden multiple webkitdirectory>
+          </div>
+          <div id="upload-controls" class="">
+            <div class="queue-heading">
+              <span id="selection-count">0 / 0 difficulties selected</span>
+              <button type="button" class="quiet small" id="clear-btn" disabled>Clear all</button>
+            </div>
+            <div class="tree-controls" role="group" aria-label="Archive visibility">
+              <button id="expand-all" type="button" class="quiet small" disabled>Expand all</button>
+              <button id="collapse-all" type="button" class="quiet small" disabled>Collapse all</button>
+            </div>
+            <div class="file-list" aria-label="Uploaded charts"></div>
+            <p class="help">
+              Expand a difficulty to inspect it, rename it, adjust timing or mirror its lanes. Unchecked difficulties are excluded from the download.
+            </p>
+            <div class="convert-controls">
+              <label for="target-format">02 // Convert to</label>
+              <select id="target-format">
+                <option value="osu">osu!mania (.osu)</option>
+                <option value="quaver">Quaver (.qua)</option>
+                <option value="stepmania">StepMania / Etterna (.sm)</option>
+                <option value="beatmania">BMS (.bms)</option>
+                <option value="ube">Universal UBE (.ube JSON)</option>
+              </select>
+              <button id="convert-btn" type="button" disabled>
+                Convert &amp; download &nearr;
+              </button>
+            </div>
+            <div class="status-line">
+              <p id="status" role="status" aria-live="polite">Ready for files.</p>
+              <button id="cancel-btn" type="button" class="quiet small" hidden>
+                Cancel &amp; clear
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="results" hidden>
+          <h2>03 // Your conversion</h2>
+          <p id="result-summary"></p>
+          <div id="download-links"></div>
+          <details id="report-details">
+            <summary id="report-count">Conversion messages</summary>
+            <ul id="report"></ul>
+          </details>
+        </section>
+
+        <section id="inspector" hidden>
+          <div class="section-heading">
+            <h2>// UBE inspector</h2>
+            <button class="quiet small" id="close-inspector" type="button">
+              Close
+            </button>
+          </div>
+          <p class="help">
+            Times are milliseconds. Lanes start at zero. Hold endings are
+            explicit.
+          </p>
+          <button id="download-json" class="quiet small" type="button">
+            Download this .ube
+          </button>
+          <pre id="json-view" tabindex="0"></pre>
+        </section>
+      </div>
+
+      <section id="panel-about" class="info-panel" role="tabpanel" aria-labelledby="tab-about" tabindex="0" hidden>
+        <h2>About UBE</h2>
+        <div class="support-copy">
+          <p>
+            <a href="https://github.com/wwobbiee/UBE" target="_blank" rel="noopener noreferrer">UBE</a> by <a href="https://wobbie.me" target="_blank" rel="noopener noreferrer" >wobbie</a>
+            reads each chart into one shared beatmap model, then converts to your chosen game format. Everything is processed locally, in browser.
+          </p>
+          <p>
+            Drop charts, folders or archives in <a onclick="document.getElementById('tab-convert').click()" href="#">Convert</a>, choose the difficulties to include, and select an output format.
+            Expand a difficulty to edit metadata or inspect its universal UBE JSON before downloading.
+          </p>
+          <p>
+            Limits: 512 MiB expanded data per import, 10,000 files and five archive levels. BMS audio mixing is limited to
+            ten minutes. Conversion messages identify omitted or altered data; failed source files are retained in a successful batch.
+          </p>
+        </div>
+      </section>
+
+      <section id="panel-formats" class="info-panel" role="tabpanel" aria-labelledby="tab-formats" tabindex="0" hidden>
+        <h2>Formats &amp; conversion notes</h2>
+        <div class="support-copy">
+          <p>
+            <strong>Archives:</strong> folders and nested ZIP containers are retained. Converted nested containers use .zip.
+            One chart can download directly; archives, multiple charts or chart + assets download as ZIP. Extract the result
+            into your game's song folder, or package a flat song as .osz / .qp for import.
+          </p>
+          <p>
+            <strong>Timing:</strong> osu!mania and Quaver use millisecond note times. SM and BMS exports use a 1/48-beat grid
+            and report quantization. Stops keep note times when exported to millisecond formats, but stop behavior and scroll
+            effects can differ.
+          </p>
+          <p>
+            <strong>Assets:</strong> common MP3/OGG/WAV and PNG/JPEG assets are copied. Unsupported media is omitted with a
+            report; it is not transcoded. Missing references are reported. BMS samples are mixed into WAV for cross-format
+            conversion when every required sample is supplied and decodable; keysounds then play automatically.
+          </p>
+          <p>
+            <strong>Scope:</strong> DWI and PMS are import formats. Only mania osu! charts are supported. BMS RANDOM/conditional
+            charts, LNTYPE 2, negative BPMs, warps and advanced timing extensions are rejected. Legacy SM lane layouts and BMS
+            layouts may differ from the source game. This is not a visual note-placement editor.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <span class="font-title text-purple">UBE // 2026</span>
+    <span>&copy; 2026 Robbie Yamashita.</span>
+    <span>UNIVERSAL BEATMAP EXTRACTOR</span>
+  </footer>
+</body>
+</html>
