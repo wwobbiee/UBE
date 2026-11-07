@@ -39,9 +39,8 @@ UBE also supports generic ZIP archives containing compatible charts and song ass
 
 To demonstrate a specific game feature, I had tested the conversion formats with a heavy slider velocity beatmap from Quaver; [Elevator - Eliminate [Belly Of The Beast]](https://quavergame.com/mapsets/15045/maps/80982). Quaver supports values of zero, negative, and positive slider velocities. osu!mania supports a slider velocity between `0.1` and `10`. StepMania, and Beatmania do not support slider velocities within their mapping formats so they are omitted in the converted beatmaps.
 
-> [!NOTE]
-> The translation of slider velocities between all formats with the Elevator beatmapset. left to right: Quaver, osu!, StepMania, BMS
-> ![A gif demonstrating loss of game specific features with slider velocities](./assets/images/slider-vel-demo.gif)
+The translation of slider velocities between all formats with the Elevator beatmapset. left to right: Quaver, osu!, StepMania, BMS
+![A gif demonstrating loss of game specific features with slider velocities](./assets/images/slider-vel-demo.gif)
 
 
 ## How to use
